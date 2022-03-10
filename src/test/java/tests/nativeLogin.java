@@ -26,6 +26,15 @@ public class nativeLogin extends BaseTest{
     private String NewUserEmailaddress = "lucas1@knol-power.nl";
     private By UserNameField = By.xpath("//input[@formcontrolname='userName']");
     private By EmailaddressField = By.xpath("//input[@formcontrolname='userEmail']");
+    private By AssignARole = By.xpath("//span[contains(text(), 'Assign a role for this user')]");
+    private By AssignAdminRole = By.xpath("//div[contains(text(), 'Admin')]");
+    private By AssignManagerRole = By.xpath("//div[contains(text(), 'Manager')]");
+    private By ClickNextButton = By.xpath("//button[contains(text(), 'NEXT')]");
+    private By SelectGroupName = By.xpath("//span[contains(text(), 'Select groups')]");
+    private By SelectingGroup1 = By.xpath("//div[contains(text(), 'Automation role ')]");
+    private By SelectingGroup2 = By.xpath("//div[contains(text(), 'Admin system roles ')]");
+    private By AddAUserButton = By.xpath("//button[contains(text(), 'Add')]");
+
 
 
     @BeforeMethod
@@ -49,25 +58,25 @@ public class nativeLogin extends BaseTest{
         Thread.sleep(3000);
         driver.findElement(UserNameField).sendKeys(NewUserName);
         driver.findElement(EmailaddressField).sendKeys(NewUserEmailaddress);
-        driver.findElement(By.xpath("//span[contains(text(), 'Assign a role for this user')]")).click();
+        driver.findElement(AssignARole).click();
         Thread.sleep(5000);
-        driver.findElement(By.xpath("//div[contains(text(), 'Admin')]")).click();
-        driver.findElement(By.xpath("//div[contains(text(), 'Manager')]")).click();
-        driver.findElement(By.xpath("//button[contains(text(), 'NEXT')]")).click();
+        driver.findElement(AssignAdminRole).click();
+        driver.findElement(AssignManagerRole).click();
+        driver.findElement(ClickNextButton).click();
         Thread.sleep(2000);
-        driver.findElement(By.xpath("//span[contains(text(), 'Select groups')]")).click();
+        driver.findElement(SelectGroupName).click();
         Thread.sleep(5000);
-        driver.findElement(By.xpath("//div[contains(text(), 'Automation role ')]")).click();
-        driver.findElement(By.xpath("//div[contains(text(), 'Admin system roles ')]")).click();
-        driver.findElement(By.xpath("//button[contains(text(), 'NEXT')]")).click();
+        driver.findElement(SelectingGroup1).click();
+        driver.findElement(SelectingGroup2).click();
+        driver.findElement(ClickNextButton).click();
         Thread.sleep(2000);
-        driver.findElement(By.xpath("//button[contains(text(), 'Add')]")).click();
+        driver.findElement(AddAUserButton).click();
     }
 
 
     @AfterMethod
     public void clearTests() {
-       // driver.quit();
+        // driver.quit();
 
     }
 }
