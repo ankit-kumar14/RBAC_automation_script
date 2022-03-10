@@ -11,7 +11,7 @@ import base.BaseTest;
 
 import java.sql.SQLOutput;
 
-public class nativeLogin extends BaseTest{
+public class Importusersscript extends BaseTest{
     //private By emailAddressField = By.xpath("//input[contains(text(),'Enter your work email address')]");
     private String email="jamescop@knol-power.nl";
     private String password="Vcomply@1234";
@@ -21,19 +21,9 @@ public class nativeLogin extends BaseTest{
     private By loginButton = By.xpath("//button[contains(text(),'SIGN IN')]");
     // Script for organization module 'Adding user name , email address , assigning role and group'
     private By organization_module = By.xpath("//*[@id='organizationMenu']");
-    private By add_a_user_button = By.xpath("//button[contains(text(),'+ ADD A USER')]");
-    private String NewUserName = "Lucas Zin";
-    private String NewUserEmailaddress = "lucas1@knol-power.nl";
-    private By UserNameField = By.xpath("//input[@formcontrolname='userName']");
-    private By EmailaddressField = By.xpath("//input[@formcontrolname='userEmail']");
-    private By AssignARole = By.xpath("//span[contains(text(), 'Assign a role for this user')]");
-    private By AssignAdminRole = By.xpath("//div[contains(text(), 'Admin')]");
-    private By AssignManagerRole = By.xpath("//div[contains(text(), 'Manager')]");
-    private By ClickNextButton = By.xpath("//button[contains(text(), 'NEXT')]");
-    private By SelectGroupName = By.xpath("//span[contains(text(), 'Select groups')]");
-    private By SelectingGroup1 = By.xpath("//div[contains(text(), 'Automation role ')]");
-    private By SelectingGroup2 = By.xpath("//div[contains(text(), 'Admin system roles ')]");
-    private By AddAUserButton = By.xpath("//button[contains(text(), 'Add')]");
+    private By ImportUser = By.xpath("//button[contains(text(),'+ IMPORT USERS')]");
+    private By DownloadTemplate = By.xpath("//button[contains(text(),'DOWNLOAD TEMPLATE')]");
+    private By BrowseTemplate = By.xpath("//button[contains(text(),'BROWSE')]");
 
 
 
@@ -53,24 +43,13 @@ public class nativeLogin extends BaseTest{
         driver.findElement(loginButton).click();
         Thread.sleep(10000);
         driver.findElement(organization_module).click();
-        Thread.sleep(7000);
-        driver.findElement(add_a_user_button).click();
-        Thread.sleep(3000);
-        driver.findElement(UserNameField).sendKeys(NewUserName);
-        driver.findElement(EmailaddressField).sendKeys(NewUserEmailaddress);
-        driver.findElement(AssignARole).click();
         Thread.sleep(5000);
-        driver.findElement(AssignAdminRole).click();
-        driver.findElement(AssignManagerRole).click();
-        driver.findElement(ClickNextButton).click();
-        Thread.sleep(5000);
-        driver.findElement(SelectGroupName).click();
-        Thread.sleep(5000);
-        driver.findElement(SelectingGroup1).click();
-        driver.findElement(SelectingGroup2).click();
-        driver.findElement(ClickNextButton).click();
+        driver.findElement(ImportUser).click();
         Thread.sleep(2000);
-        driver.findElement(AddAUserButton).click();
+        driver.findElement(DownloadTemplate).click();
+        driver.findElement(BrowseTemplate).click();
+
+
     }
 
 
