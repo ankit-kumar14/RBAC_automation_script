@@ -19,7 +19,7 @@ public class CreateRole extends BaseTest{
     //private By passwordField = By.xpath("//input[contains(text(),'Enter a password')]");
     private By passwordField = By.xpath("//input[@formcontrolname='password']");
     private By loginButton = By.xpath("//button[contains(text(),'SIGN IN')]");
-    // Script for organization module 'Adding user name , email address , assigning role and group'
+    // Script for organization module 'Creating a new power user role and assigning a role and group'
     private By organization_module = By.xpath("//*[@id='organizationMenu']");
     private By ClickRole = By.xpath("//a[contains(text(), ' Roles ')]");
     private By CreateRoleButton = By.xpath("//button[contains(text(),'+ CREATE A ROLE')]");

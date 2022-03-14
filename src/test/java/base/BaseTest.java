@@ -15,7 +15,7 @@ public class BaseTest {
 
     public void setup() {
         baseURL="https://app.v-comply.com";
-        organizationURL = "https://app.v-comply.com/organization/#";
+        //organizationURL = "https://app.v-comply.com/organization/#";
         System.setProperty("webdriver.chrome.driver","resources/chromedriver99.exe");
         System.setProperty("webdriver.chrome.silentOutput","true");
         ChromeOptions options = new ChromeOptions();
@@ -26,7 +26,6 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.get(baseURL);
-        driver.get(organizationURL);
     }
 
 }
