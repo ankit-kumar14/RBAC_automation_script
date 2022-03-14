@@ -2,20 +2,21 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 import base.BaseTest;
 
 import java.sql.SQLOutput;
 
 public class AdminCreateRC extends BaseTest{
-    //private By emailAddressField = By.xpath("//input[contains(text(),'Enter your work email address')]");
     private String email="charles@knol-power.nl";
     private String password="Vcomply@1234";
     private By emailAddressField = By.xpath("//input[@formcontrolname='email']");
-    //private By passwordField = By.xpath("//input[contains(text(),'Enter a password')]");
     private By passwordField = By.xpath("//input[@formcontrolname='password']");
     private By loginButton = By.xpath("//button[contains(text(),'SIGN IN')]");
+
     // Script for organization module 'Creating new Responsibility Center' from 'Admin's account'
+
     private By organization_module = By.xpath("//*[@id='organizationMenu']");
     private By ResponsibilityCenter = By.xpath("//a[contains(text(), ' Responsibility Centers ')]");
     private By CreateRcButton = By.xpath("//button[contains(text(),'+ ADD A RESPONSIBILITY CENTER')]");
@@ -33,13 +34,17 @@ public class AdminCreateRC extends BaseTest{
     private By Owner4 = By.xpath("//div[contains(text(),'William')]");
     private By RcType = By.xpath("//input[@readonly and @placeholder='Select']"); //SPECIFY WHO CAN TAG RESPONSIBILITIES TO THIS RESPONSIBILITY CENTER
     private By SelectingAllPowerUers = By.xpath("(//input[@class=\"pointer-none\"])[1]"); //Selecting all power users type
-    private String Description ="A group, in mathematics, is a set together with an operation that combines any two of its elements to form a third element, in such a way that the operation is associative, an identity element exists, and every element has an inverse. These three conditions, called group axioms, are familiar from number systems. The ubiquity of groups in numerous areas—both within and outside mathematics—makes them a central organizational tool in contemporary mathematics. The concept of a group arose from the study of polynomial equations, starting with Évariste Galois in the 1830s.";
-    private By AddDescriptionField = By.xpath("//div[@placeholder='Add description' and @id='mPcY8BIzOVIGNI7CJ83bS']"); //DESCRIPTION FOR THIS RESPONSIBILITY CENTER
+    //private String Description ="A group, in mathematics,with Évariste Galois in the 1830s.";
+    //private By AddDescriptionField = By.xpath("//div[@placeholder='Add description' and @id='mPcY8BIzOVIGNI7CJ83bS']"); //DESCRIPTION FOR THIS RESPONSIBILITY CENTER
     private By SaveButton = By.xpath("//button[contains(text(),'SAVE')]");
 
-    private By ViewRcDetails = By.xpath("(//button[@class='view-details-btn vx-fs-11 vx-fw-500 vx-tt-uppercase vx-p-0 vx-pl-2 vx-pr-2 vx-m-0 vx-d-flex vx-align-center vx-lh-5'])[9]");
+    private By ViewRcDetails = By.xpath("(//button[@class='view-details-btn vx-fs-11 vx-fw-500 vx-tt-uppercase vx-p-0 vx-pl-2 vx-pr-2 vx-m-0 vx-d-flex vx-align-center vx-lh-5'])[1]");
     private By ClickingThreedots = By.xpath("//button[@class='action-btn vx-fs-16 vx-d-inline-flex vx-align-center']");
     private By DeleteRC = By.xpath("//button[contains(text(),' delete')]");
+    private By DeleteYes = By.xpath("//button[contains(text(),'Yes')]");
+    private By SearchBar = By.xpath("//input[@placeholder = 'Type here & press enter to search']");
+    private String search = "SeleniumNg";
+
 
 
     @BeforeMethod
@@ -85,11 +90,11 @@ public class AdminCreateRC extends BaseTest{
         Thread.sleep(1000);
         driver.findElement(SelectingAllPowerUers).click();
         Thread.sleep(1500);
-        driver.findElement(AddDescriptionField).click();
-        Thread.sleep(1000);
-        driver.findElement(AddDescriptionField).sendKeys(Description);
+        //driver.findElement(AddDescriptionField).click();
+        //Thread.sleep(1000);
+        //driver.findElement(AddDescriptionField).sendKeys(Description);
         driver.findElement(SaveButton).click();
-        Thread.sleep(1500);
+        Thread.sleep(3000);
         String CurrentUrl=driver.getCurrentUrl();
         if(!CurrentUrl.contains("manage-responsibility-centers")){
             Assert.fail("Did not landed on correct page");
@@ -97,10 +102,22 @@ public class AdminCreateRC extends BaseTest{
         else{
             System.out.println("Landed on correct page");
         }
+
         //Delete Rc functionality
+
+        driver.findElement(SearchBar).click();
+        driver.findElement(SearchBar).sendKeys(search);
+        Thread.sleep(1000);
+        driver.findElement(SearchBar).sendKeys(Keys.ENTER);
+        Thread.sleep(1000);
         driver.findElement(ViewRcDetails).click();
+        Thread.sleep(5000);
         driver.findElement(ClickingThreedots).click();
+        Thread.sleep(2000);
         driver.findElement(DeleteRC).click();
+        Thread.sleep(1000);
+        driver.findElement(DeleteYes).click();
+        Thread.sleep(5000);
         String AfterDeleteUrl=driver.getCurrentUrl();
         if(!AfterDeleteUrl.contains("manage-responsibility-centers")){
             Assert.fail("Did not landed on correct page");
@@ -108,26 +125,10 @@ public class AdminCreateRC extends BaseTest{
         else{
             System.out.println("Landed on correct page");
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
 
     @AfterMethod
     public void clearTests() {
         // driver.quit();
-
     }
 }

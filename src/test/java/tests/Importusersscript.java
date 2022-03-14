@@ -12,13 +12,12 @@ import base.BaseTest;
 import java.sql.SQLOutput;
 
 public class Importusersscript extends BaseTest{
-    //private By emailAddressField = By.xpath("//input[contains(text(),'Enter your work email address')]");
     private String email="jamescop@knol-power.nl";
     private String password="Vcomply@1234";
     private By emailAddressField = By.xpath("//input[@formcontrolname='email']");
-    //private By passwordField = By.xpath("//input[contains(text(),'Enter a password')]");
     private By passwordField = By.xpath("//input[@formcontrolname='password']");
     private By loginButton = By.xpath("//button[contains(text(),'SIGN IN')]");
+
     // Script for organization module 'Adding user name , email address , assigning role and group'
     private By organization_module = By.xpath("//*[@id='organizationMenu']");
     private By ImportUser = By.xpath("//button[contains(text(),'+ IMPORT USERS')]");

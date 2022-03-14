@@ -12,18 +12,17 @@ import base.BaseTest;
 import java.sql.SQLOutput;
 
 public class CreateRole extends BaseTest{
-    //private By emailAddressField = By.xpath("//input[contains(text(),'Enter your work email address')]");
     private String email="jamescop@knol-power.nl";
     private String password="Vcomply@1234";
+    private String roleName = "Admin_RBAC_role1";
     private By emailAddressField = By.xpath("//input[@formcontrolname='email']");
-    //private By passwordField = By.xpath("//input[contains(text(),'Enter a password')]");
     private By passwordField = By.xpath("//input[@formcontrolname='password']");
     private By loginButton = By.xpath("//button[contains(text(),'SIGN IN')]");
+
     // Script for organization module 'Creating a new power user role and assigning a role and group'
     private By organization_module = By.xpath("//*[@id='organizationMenu']");
     private By ClickRole = By.xpath("//a[contains(text(), ' Roles ')]");
     private By CreateRoleButton = By.xpath("//button[contains(text(),'+ CREATE A ROLE')]");
-    private String roleName = "Admin_RBAC_role1";
     private By roleNameField = By.xpath("//input[@formcontrolname='roleName']");
     private By LicenseType = By.xpath("//div[contains(text(), ' POWER USERS')]");
     private By SelectRoleGroupName = By.xpath("//span[contains(text(), 'Select users and groups for this role')]");
@@ -31,11 +30,6 @@ public class CreateRole extends BaseTest{
     private By SelectRoleFromList = By.xpath("//div[contains(text(), 'Isabella')]");
     private By NextButton = By.xpath("//button[contains(text(), 'NEXT')]");
     private By CreateButton = By.xpath("//button[contains(text(), 'create')]");
-
-
-
-
-
 
 
     @BeforeMethod
