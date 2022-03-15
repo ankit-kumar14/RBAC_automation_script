@@ -1,4 +1,6 @@
 package tests;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.openqa.selenium.By;
@@ -55,13 +57,14 @@ public class AdminCreateRC extends BaseTest{
     }
     @Test(description="Test:Login Test With Correct Details")
     public void loginWithCorrectDetails() throws InterruptedException {
-        Thread.sleep(5000);
+        WebDriverWait wait=new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.elementToBeClickable(emailAddressField));
         driver.findElement(emailAddressField).clear();
         driver.findElement(emailAddressField).sendKeys(email);
         driver.findElement(passwordField).clear();
         driver.findElement(passwordField).sendKeys(password);
         driver.findElement(loginButton).click();
-        Thread.sleep(15000);
+        wait.until(ExpectedConditions.elementToBeClickable(organization_module));
         driver.findElement(organization_module).click();
         Thread.sleep(1500);
         driver.findElement(ResponsibilityCenter).click();
@@ -78,16 +81,16 @@ public class AdminCreateRC extends BaseTest{
         driver.findElement(SelectOwnersEditButton).click();
         Thread.sleep(4000);
         driver.findElement(Owner1).click();
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(Owner2).click();
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(Owner3).click();
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(Owner4).click();
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(NextButton).click();
         driver.findElement(RcType).click();
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(SelectingAllPowerUers).click();
         Thread.sleep(1500);
         //driver.findElement(AddDescriptionField).click();

@@ -19,7 +19,9 @@ public class nativeLogin extends BaseTest{
     //private By passwordField = By.xpath("//input[contains(text(),'Enter a password')]");
     private By passwordField = By.xpath("//input[@formcontrolname='password']");
     private By loginButton = By.xpath("//button[contains(text(),'SIGN IN')]");
+
     // Script for organization module 'Adding user name , email address , assigning role and group'
+
     private By organization_module = By.xpath("//*[@id='organizationMenu']");
     private By add_a_user_button = By.xpath("//button[contains(text(),'+ ADD A USER')]");
     private String NewUserName = "Lucas Zin";
@@ -45,27 +47,28 @@ public class nativeLogin extends BaseTest{
     }
     @Test(description="Test:Login Test With Correct Details")
     public void loginWithCorrectDetails() throws InterruptedException {
-        Thread.sleep(5000);
+        WebDriverWait wait=new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.elementToBeClickable(emailAddressField));
         driver.findElement(emailAddressField).clear();
         driver.findElement(emailAddressField).sendKeys(email);
         driver.findElement(passwordField).clear();
         driver.findElement(passwordField).sendKeys(password);
         driver.findElement(loginButton).click();
-        Thread.sleep(10000);
+        wait.until(ExpectedConditions.elementToBeClickable(organization_module));
         driver.findElement(organization_module).click();
-        Thread.sleep(7000);
+        wait.until(ExpectedConditions.elementToBeClickable(add_a_user_button));
         driver.findElement(add_a_user_button).click();
         Thread.sleep(3000);
         driver.findElement(UserNameField).sendKeys(NewUserName);
         driver.findElement(EmailaddressField).sendKeys(NewUserEmailaddress);
         driver.findElement(AssignARole).click();
-        Thread.sleep(5000);
+        wait.until(ExpectedConditions.elementToBeClickable(AssignAdminRole));
         driver.findElement(AssignAdminRole).click();
         driver.findElement(AssignManagerRole).click();
         driver.findElement(ClickNextButton).click();
-        Thread.sleep(5000);
+        wait.until(ExpectedConditions.elementToBeClickable(SelectGroupName));
         driver.findElement(SelectGroupName).click();
-        Thread.sleep(5000);
+        wait.until(ExpectedConditions.elementToBeClickable(SelectingGroup1));
         driver.findElement(SelectingGroup1).click();
         driver.findElement(SelectingGroup2).click();
         driver.findElement(ClickNextButton).click();

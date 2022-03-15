@@ -34,15 +34,16 @@ public class Importusersscript extends BaseTest{
     }
     @Test(description="Test:Login Test With Correct Details")
     public void loginWithCorrectDetails() throws InterruptedException {
-        Thread.sleep(5000);
+        WebDriverWait wait=new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.elementToBeClickable(emailAddressField));
         driver.findElement(emailAddressField).clear();
         driver.findElement(emailAddressField).sendKeys(email);
         driver.findElement(passwordField).clear();
         driver.findElement(passwordField).sendKeys(password);
         driver.findElement(loginButton).click();
-        Thread.sleep(10000);
+        wait.until(ExpectedConditions.elementToBeClickable(organization_module));
         driver.findElement(organization_module).click();
-        Thread.sleep(5000);
+        wait.until(ExpectedConditions.elementToBeClickable(ImportUser));
         driver.findElement(ImportUser).click();
         Thread.sleep(2000);
         driver.findElement(DownloadTemplate).click();
