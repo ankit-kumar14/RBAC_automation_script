@@ -94,7 +94,7 @@ public class AdminCreateRC extends BaseTest{
         //Thread.sleep(1000);
         //driver.findElement(AddDescriptionField).sendKeys(Description);
         driver.findElement(SaveButton).click();
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         String CurrentUrl=driver.getCurrentUrl();
         if(!CurrentUrl.contains("manage-responsibility-centers")){
             Assert.fail("Did not landed on correct page");
