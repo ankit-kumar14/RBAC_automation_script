@@ -20,23 +20,6 @@ public class nativeLogin extends BaseTest{
     private By passwordField = By.xpath("//input[@formcontrolname='password']");
     private By loginButton = By.xpath("//button[contains(text(),'SIGN IN')]");
 
-    // Script for organization module 'Adding user name , email address , assigning role and group'
-
-    private By organization_module = By.xpath("//*[@id='organizationMenu']");
-    private By add_a_user_button = By.xpath("//button[contains(text(),'+ ADD A USER')]");
-    private String NewUserName = "Lucas Zin";
-    private String NewUserEmailaddress = "lucas1@knol-power.nl";
-    private By UserNameField = By.xpath("//input[@formcontrolname='userName']");
-    private By EmailaddressField = By.xpath("//input[@formcontrolname='userEmail']");
-    private By AssignARole = By.xpath("//span[contains(text(), 'Assign a role for this user')]");
-    private By AssignAdminRole = By.xpath("//div[contains(text(), 'Admin')]");
-    private By AssignManagerRole = By.xpath("//div[contains(text(), 'Manager')]");
-    private By ClickNextButton = By.xpath("//button[contains(text(), 'NEXT')]");
-    private By SelectGroupName = By.xpath("//span[contains(text(), 'Select groups')]");
-    private By SelectingGroup1 = By.xpath("//div[contains(text(), 'Automation role ')]");
-    private By SelectingGroup2 = By.xpath("//div[contains(text(), 'Admin system roles ')]");
-    private By AddAUserButton = By.xpath("//button[contains(text(), 'Add')]");
-
 
 
     @BeforeMethod
@@ -45,6 +28,7 @@ public class nativeLogin extends BaseTest{
         driver.navigate().to(baseURL+"/signin");
         //driver.navigate().to(organizationURL+"/manage-users");
     }
+
     @Test(description="Test:Login Test With Correct Details")
     public void loginWithCorrectDetails() throws InterruptedException {
         WebDriverWait wait=new WebDriverWait(driver, 30);
@@ -54,28 +38,14 @@ public class nativeLogin extends BaseTest{
         driver.findElement(passwordField).clear();
         driver.findElement(passwordField).sendKeys(password);
         driver.findElement(loginButton).click();
-        wait.until(ExpectedConditions.elementToBeClickable(organization_module));
-        driver.findElement(organization_module).click();
-        wait.until(ExpectedConditions.elementToBeClickable(add_a_user_button));
-        driver.findElement(add_a_user_button).click();
-        Thread.sleep(3000);
-        driver.findElement(UserNameField).sendKeys(NewUserName);
-        driver.findElement(EmailaddressField).sendKeys(NewUserEmailaddress);
-        driver.findElement(AssignARole).click();
-        wait.until(ExpectedConditions.elementToBeClickable(AssignAdminRole));
-        driver.findElement(AssignAdminRole).click();
-        driver.findElement(AssignManagerRole).click();
-        driver.findElement(ClickNextButton).click();
-        wait.until(ExpectedConditions.elementToBeClickable(SelectGroupName));
-        driver.findElement(SelectGroupName).click();
-        wait.until(ExpectedConditions.elementToBeClickable(SelectingGroup1));
-        driver.findElement(SelectingGroup1).click();
-        driver.findElement(SelectingGroup2).click();
-        driver.findElement(ClickNextButton).click();
-        Thread.sleep(2000);
-        driver.findElement(AddAUserButton).click();
+        String CurrentUrl=driver.getCurrentUrl();
+        if(!CurrentUrl.contains("compliance_dashboard")){
+            Assert.fail("Did not landed on correct page");
+        }
+        else{
+            System.out.println("Landed on correct page");
+        }
     }
-
 
     @AfterMethod
     public void clearTests() {
