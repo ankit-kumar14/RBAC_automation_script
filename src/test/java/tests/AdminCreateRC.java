@@ -73,7 +73,7 @@ public class AdminCreateRC extends BaseTest{
         Thread.sleep(1000);
         driver.findElement(RcNameFeild).sendKeys(Rcname);
         driver.findElement(RcparentList).click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         driver.findElement(SelectingRcParent).click();
         Thread.sleep(1000);
         driver.findElement(NextButton).click();

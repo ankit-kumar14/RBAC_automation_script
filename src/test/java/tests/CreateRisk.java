@@ -99,7 +99,7 @@ public class CreateRisk extends BaseTest{
         driver.findElement(SelectRiskOwner4).click();
         Thread.sleep(500);
         driver.findElement(NextButton).click();
-        Thread.sleep(3000);
+        Thread.sleep(6000);
         driver.findElement(OpeningRiskCategory).click();
         Thread.sleep(5000);
         wait.until(ExpectedConditions.elementToBeClickable(SelectingOtherRiskCategory));

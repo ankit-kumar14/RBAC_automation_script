@@ -14,7 +14,7 @@ import java.sql.SQLOutput;
 public class CreateRole extends BaseTest{
     private String email="jamescop@knol-power.nl";
     private String password="Vcomply@1234";
-    private String roleName = "Admin_RBAC_role1";
+    private String roleName = "Admin_RBAC_role2";
     private By emailAddressField = By.xpath("//input[@formcontrolname='email']");
     private By passwordField = By.xpath("//input[@formcontrolname='password']");
     private By loginButton = By.xpath("//button[contains(text(),'SIGN IN')]");
