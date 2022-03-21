@@ -32,7 +32,7 @@ public class Importusersscript extends BaseTest{
         driver.navigate().to(baseURL+"/signin");
         //driver.navigate().to(organizationURL+"/manage-users");
     }
-    @Test(description="Test:Login Test With Correct Details")
+    @Test(description="Test:Testing import users functionality")
     public void loginWithCorrectDetails() throws InterruptedException {
         WebDriverWait wait=new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(emailAddressField));
@@ -48,6 +48,8 @@ public class Importusersscript extends BaseTest{
         Thread.sleep(2000);
         driver.findElement(DownloadTemplate).click();
         driver.findElement(BrowseTemplate).click();
+        WebElement chooseFile = driver.findElement(By.id("custom-input"));
+        chooseFile.sendKeys("/Users/ankita/Downloads/edureka.png");
 
 
     }

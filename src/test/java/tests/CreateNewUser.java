@@ -15,6 +15,8 @@ public class CreateNewUser extends BaseTest{
     //private By emailAddressField = By.xpath("//input[contains(text(),'Enter your work email address')]");
     private String email="jamescop@knol-power.nl";
     private String password="Vcomply@1234";
+    private String NewUserName = "Akash patil";
+    private String NewUserEmailaddress = "patil_akash@knol-power.nl";
     private By emailAddressField = By.xpath("//input[@formcontrolname='email']");
     //private By passwordField = By.xpath("//input[contains(text(),'Enter a password')]");
     private By passwordField = By.xpath("//input[@formcontrolname='password']");
@@ -24,8 +26,6 @@ public class CreateNewUser extends BaseTest{
 
     private By organization_module = By.xpath("//*[@id='organizationMenu']");
     private By add_a_user_button = By.xpath("//button[contains(text(),'+ ADD A USER')]");
-    private String NewUserName = "Lucas Zin";
-    private String NewUserEmailaddress = "lucas1@knol-power.nl";
     private By UserNameField = By.xpath("//input[@formcontrolname='userName']");
     private By EmailaddressField = By.xpath("//input[@formcontrolname='userEmail']");
     private By AssignARole = By.xpath("//span[contains(text(), 'Assign a role for this user')]");
@@ -45,7 +45,7 @@ public class CreateNewUser extends BaseTest{
         driver.navigate().to(baseURL+"/signin");
         //driver.navigate().to(organizationURL+"/manage-users");
     }
-    @Test(description="Test:Login Test With Correct Details")
+    @Test(description="Test: Testing create a new user functionality")
     public void loginWithCorrectDetails() throws InterruptedException {
         WebDriverWait wait=new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(emailAddressField));

@@ -14,7 +14,7 @@ import java.sql.SQLOutput;
 public class CreateRole extends BaseTest{
     private String email="jamescop@knol-power.nl";
     private String password="Vcomply@1234";
-    private String roleName = "Admin_RBAC_role2";
+    private String roleName = "Admin_RBAC_role3";
     private By emailAddressField = By.xpath("//input[@formcontrolname='email']");
     private By passwordField = By.xpath("//input[@formcontrolname='password']");
     private By loginButton = By.xpath("//button[contains(text(),'SIGN IN')]");
@@ -38,7 +38,7 @@ public class CreateRole extends BaseTest{
         driver.navigate().to(baseURL+"/signin");
         //driver.navigate().to(organizationURL+"/manage-users");
     }
-    @Test(description="Test:Login Test With Correct Details")
+    @Test(description="Test:Testing create role functionality")
     public void loginWithCorrectDetails() throws InterruptedException {
         WebDriverWait wait=new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(emailAddressField));

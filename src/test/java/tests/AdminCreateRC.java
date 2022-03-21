@@ -55,7 +55,7 @@ public class AdminCreateRC extends BaseTest{
         driver.navigate().to(baseURL+"/signin");
         //driver.navigate().to(organizationURL+"/manage-users");
     }
-    @Test(description="Test:Login Test With Correct Details")
+    @Test(description="Test:Testing create responsibility center using admins account")
     public void loginWithCorrectDetails() throws InterruptedException {
         WebDriverWait wait=new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(emailAddressField));
@@ -66,7 +66,7 @@ public class AdminCreateRC extends BaseTest{
         driver.findElement(loginButton).click();
         wait.until(ExpectedConditions.elementToBeClickable(organization_module));
         driver.findElement(organization_module).click();
-        Thread.sleep(1500);
+        Thread.sleep(500);
         driver.findElement(ResponsibilityCenter).click();
         Thread.sleep(1500);
         driver.findElement(CreateRcButton).click();

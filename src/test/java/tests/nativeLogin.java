@@ -19,7 +19,7 @@ public class nativeLogin extends BaseTest{
     //private By passwordField = By.xpath("//input[contains(text(),'Enter a password')]");
     private By passwordField = By.xpath("//input[@formcontrolname='password']");
     private By loginButton = By.xpath("//button[contains(text(),'SIGN IN')]");
-
+    private By organization_module = By.xpath("//*[@id='organizationMenu']");
 
 
     @BeforeMethod
@@ -38,6 +38,7 @@ public class nativeLogin extends BaseTest{
         driver.findElement(passwordField).clear();
         driver.findElement(passwordField).sendKeys(password);
         driver.findElement(loginButton).click();
+        wait.until(ExpectedConditions.elementToBeClickable(organization_module));
         String CurrentUrl=driver.getCurrentUrl();
         if(!CurrentUrl.contains("compliance_dashboard")){
             Assert.fail("Did not landed on correct page");

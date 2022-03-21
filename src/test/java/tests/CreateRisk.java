@@ -43,7 +43,7 @@ public class CreateRisk extends BaseTest{
     private By AddingRiskOverseerField = By.xpath("//span[contains(text(),'Risk Overseer')]");
     private By OpeningOverseerList = By.xpath("//input[@placeholder = 'Select Risk Overseer(s)']");
     private By SelectOverseer1 = By.xpath("//span[contains(text(),'Jason') and @class='name']");
-    private By SelectOverseer2 = By.xpath("//span[contains(text(),'Ava') and @class='name']");
+    private By SelectOverseer2 = By.xpath("//span[contains(text(),'Ethan') and @class='name']");
     private By SelectOverseer3 = By.xpath("//span[contains(text(),'Michael') and @class='name']");
     private By AddingRiskMitigationPriorityField = By.xpath("//span[contains(text(),'Risk Mitigation Priority')]");
     private By MitigationPriorityList = By.xpath("//input[@placeholder = 'Select a mitigation priority']");
@@ -60,7 +60,7 @@ public class CreateRisk extends BaseTest{
         driver.navigate().to(baseURL+"/signin");
     }
 
-    @Test(description="Test:Login Test With Correct Details")
+    @Test(description="Test:Testing create risk functionality")
     public void loginWithCorrectDetails() throws InterruptedException {
         WebDriverWait wait=new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(emailAddressField));
@@ -127,7 +127,8 @@ public class CreateRisk extends BaseTest{
         //Thread.sleep(1000);
         //driver.findElement(SelectingRiskMitigationPriority).click();
         driver.findElement(AddButton).click();
-        Thread.sleep(5000);
+        wait.until(ExpectedConditions.elementToBeClickable(RiskModule));
+        Thread.sleep(6000);
         String CurrentUrl=driver.getCurrentUrl();
         if(!CurrentUrl.contains("risk_dashboard?module=risk")){
             Assert.fail("Did not landed on correct page");
