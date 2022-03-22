@@ -19,15 +19,17 @@ public class AdminCreateRC extends BaseTest{
 
     // Script for organization module 'Creating new Responsibility Center' from 'Admin's account'
 
+    private String Rcname = "SeleniumNg"; //RC name
+    private String LocationOfRc ="Power users location"; // RC location field
+    private String search = "SeleniumNg";  // RC name to be searched
+
     private By organization_module = By.xpath("//*[@id='organizationMenu']");
     private By ResponsibilityCenter = By.xpath("//a[contains(text(), ' Responsibility Centers ')]");
     private By CreateRcButton = By.xpath("//button[contains(text(),'+ ADD A RESPONSIBILITY CENTER')]");
-    private String Rcname = "SeleniumNg"; //RC name
     private By RcNameFeild = By.xpath("//input[@formcontrolname='rcName']"); //RESPONSIBILITY CENTER NAME
     private By RcparentList = By.xpath("//span[contains(text(),'Select parent Responsibility Center')]"); //SELECT A PARENT RESPONSIBILITY CENTER (LEAVE BLANK IF NOT APPLICABLE)
     private By SelectingRcParent = By.xpath("(//div[contains(text(),'Root')])[2]"); // Selecting parent from list of responsibility
     private By NextButton = By.xpath("//button[contains(text(),'NEXT')]"); // Next button for saving the parent RC
-    private String LocationOfRc ="Power users location";
     private By LocationOfRcInputField = By.xpath("//input[@formcontrolname= 'rcLocation']"); //LOCATION OF THIS RESPONSIBILITY CENTER
     private By SelectOwnersEditButton = By.xpath("(//button[contains(text(),'EDIT')])[2]"); //SPECIFY WHO CAN VIEW REPORTS AND DASHBOARDS FOR THIS RESPONSIBILITY CENTER
     private By Owner1 = By.xpath("//span[@class='value']//div[contains(text(),'Ubner')]");
@@ -45,7 +47,7 @@ public class AdminCreateRC extends BaseTest{
     private By DeleteRC = By.xpath("//button[contains(text(),' delete')]");
     private By DeleteYes = By.xpath("//button[contains(text(),'Yes')]");
     private By SearchBar = By.xpath("//input[@placeholder = 'Type here & press enter to search']");
-    private String search = "SeleniumNg";
+
 
 
 
