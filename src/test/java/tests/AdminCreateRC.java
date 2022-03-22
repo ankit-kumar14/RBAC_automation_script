@@ -13,6 +13,7 @@ import java.sql.SQLOutput;
 public class AdminCreateRC extends BaseTest{
     private String email="charles@knol-power.nl";
     private String password="Vcomply@1234";
+    //String name11 = "Ubner";
     private By emailAddressField = By.xpath("//input[@formcontrolname='email']");
     private By passwordField = By.xpath("//input[@formcontrolname='password']");
     private By loginButton = By.xpath("//button[contains(text(),'SIGN IN')]");
