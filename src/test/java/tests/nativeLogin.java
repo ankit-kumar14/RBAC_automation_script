@@ -24,13 +24,15 @@ public class nativeLogin extends BaseTest{
 
     @BeforeMethod
     public void setupTests() {
-        super.setup();
-        driver.navigate().to(baseURL+"/signin");
+        //super.setup();
+        //driver.navigate().to(baseURL+"/signin");
         //driver.navigate().to(organizationURL+"/manage-users");
     }
 
-    @Test(description="Test:Login Test With Correct Details")
+    @Test( priority=1 , description = "Test:Login Test With Correct Details")
     public void loginWithCorrectDetails() throws InterruptedException {
+        super.setup();
+        driver.navigate().to(baseURL+"/signin");
         WebDriverWait wait=new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(emailAddressField));
         driver.findElement(emailAddressField).clear();
@@ -47,6 +49,16 @@ public class nativeLogin extends BaseTest{
             System.out.println("Landed on correct page");
         }
     }
+
+    @Test(priority = 2)
+    public void logthrough() throws InterruptedException {
+        WebDriverWait wait=new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.elementToBeClickable(organization_module));
+        driver.findElement(organization_module).click();
+
+    }
+
+
 
     @AfterMethod
     public void clearTests() {
