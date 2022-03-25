@@ -9,12 +9,15 @@ public class BaseTest {
     public WebDriver driver;
     public String baseURL;
     public String organizationURL;
+    public String production_server = "app";
+    public String beta_server = "beta";
+    public String dev_server = "dev";
 
 
 
 
     public void setup() {
-        baseURL="https://app.v-comply.com";
+        baseURL="https://" +dev_server+ ".v-comply.com";
         //organizationURL = "https://app.v-comply.com/organization/#";
         System.setProperty("webdriver.chrome.driver","resources/chromedriver99.exe");
         System.setProperty("webdriver.chrome.silentOutput","true");
