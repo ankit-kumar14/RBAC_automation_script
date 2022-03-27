@@ -59,7 +59,7 @@ public class AdminCreateRC extends BaseTest{
         //driver.navigate().to(organizationURL+"/manage-users");
     }
     @Test(description="Test:Testing create responsibility center using admins account")
-    public void loginWithCorrectDetails() throws InterruptedException {
+    public void AdminCreateRC() throws InterruptedException {
         WebDriverWait wait=new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(emailAddressField));
         driver.findElement(emailAddressField).clear();
@@ -135,6 +135,6 @@ public class AdminCreateRC extends BaseTest{
 
     @AfterMethod
     public void clearTests() {
-        // driver.quit();
+        driver.quit();
     }
 }

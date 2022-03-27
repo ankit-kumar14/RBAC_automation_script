@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import base.BaseTest;
 
-import java.sql.SQLOutput;
 
 public class CreateNewUser extends BaseTest{
     //private By emailAddressField = By.xpath("//input[contains(text(),'Enter your work email address')]");
@@ -46,7 +45,7 @@ public class CreateNewUser extends BaseTest{
         //driver.navigate().to(organizationURL+"/manage-users");
     }
     @Test(description="Test: Testing create a new user functionality")
-    public void loginWithCorrectDetails() throws InterruptedException {
+    public void CreateNewUser() throws InterruptedException {
         WebDriverWait wait=new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(emailAddressField));
         driver.findElement(emailAddressField).clear();
@@ -79,7 +78,7 @@ public class CreateNewUser extends BaseTest{
 
     @AfterMethod
     public void clearTests() {
-        // driver.quit();
+        driver.quit();
 
     }
 }

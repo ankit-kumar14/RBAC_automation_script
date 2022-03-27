@@ -2,11 +2,6 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.Reporter;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -38,7 +33,7 @@ public class nativeLogin extends BaseTest{
     }
 
     @Test( priority=1 , description = "Test:Login Test With Blank Userid and passwords")
-    public void loginWithBlankEmailidPassword() throws InterruptedException {
+    public void loginWithBlankEmailidPassword_inDEV(){
         super.setup();
         driver.navigate().to("https://" +dev_server+ ".v-comply.com"+"/signin");
         WebDriverWait wait=new WebDriverWait(driver, 30);
@@ -61,7 +56,7 @@ public class nativeLogin extends BaseTest{
     }
 
     @Test( priority=2 , description = "Test:Login Test With Correct Details")
-    public void loginWithCorrectDetails() throws InterruptedException {
+    public void loginWithCorrectDetails_inDEV() throws InterruptedException {
         WebDriverWait wait=new WebDriverWait(driver, 30);
         driver.navigate().refresh();
         wait.until(ExpectedConditions.elementToBeClickable(emailAddressField));

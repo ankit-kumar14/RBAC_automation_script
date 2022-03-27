@@ -148,7 +148,7 @@ public class ExecutiveUserRoleVerify extends BaseTest {
 
         @AfterMethod
         public void clearTests() {
-               // driver.quit();
+               driver.quit();
 
         }
 }

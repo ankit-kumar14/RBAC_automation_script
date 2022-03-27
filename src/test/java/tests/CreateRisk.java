@@ -1,10 +1,7 @@
 package tests;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -24,6 +21,7 @@ public class CreateRisk extends BaseTest{
     private By passwordField = By.xpath("//input[@formcontrolname='password']");
     private By loginButton = By.xpath("//button[contains(text(),'SIGN IN')]");
     // Script for organization module 'Adding user name , email address , assigning role and group'
+    private By organization_module = By.xpath("//*[@id='organizationMenu']");
     private By RiskModule = By.xpath("//*[@id='riskMenu']");
     private By RiskWorkflowEngine = By.xpath("//button[contains(text(),'+') and @class='top']");
     private By RiskNameField = By.xpath("//input[@placeholder = 'Add a risk name']");
@@ -33,7 +31,7 @@ public class CreateRisk extends BaseTest{
     private By SelectRcFromList = By.xpath("(//li[contains(text(),'Cloud')])[1]");
     private By NextButton = By.xpath("//button[contains(text(),'Next')]");
     private By EditRiskOwner = By.xpath("(//button[contains(text(),' Edit')])[4]");
-    private By SelectRiskOwner1 = By.xpath("//span[contains(text(),'Larson') and @class='name']");
+    private By SelectRiskOwner1 = By.xpath("//span[contains(text(),'Mason') and @class='name']");
     private By SelectRiskOwner2 = By.xpath("//span[contains(text(),'Sophia') and @class='name']");
     private By SelectRiskOwner3 = By.xpath("//span[contains(text(),'Isabella') and @class='name']");
     private By SelectRiskOwner4 = By.xpath("//span[contains(text(),'Olivia') and @class='name']");
@@ -42,7 +40,7 @@ public class CreateRisk extends BaseTest{
     private By SelectingRiskCategory = By.xpath("//span[contains(text(),' Residual details')]");
     private By AddingRiskOverseerField = By.xpath("//span[contains(text(),'Risk Overseer')]");
     private By OpeningOverseerList = By.xpath("//input[@placeholder = 'Select Risk Overseer(s)']");
-    private By SelectOverseer1 = By.xpath("//span[contains(text(),'Jason') and @class='name']");
+    private By SelectOverseer1 = By.xpath("//span[contains(text(),'Madison') and @class='name']");
     private By SelectOverseer2 = By.xpath("//span[contains(text(),'Ethan') and @class='name']");
     private By SelectOverseer3 = By.xpath("//span[contains(text(),'Michael') and @class='name']");
     private By AddingRiskMitigationPriorityField = By.xpath("//span[contains(text(),'Risk Mitigation Priority')]");
@@ -61,7 +59,7 @@ public class CreateRisk extends BaseTest{
     }
 
     @Test(description="Test:Testing create risk functionality")
-    public void loginWithCorrectDetails() throws InterruptedException {
+    public void CreateRisk() throws InterruptedException {
         WebDriverWait wait=new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(emailAddressField));
         driver.findElement(emailAddressField).clear();
@@ -91,11 +89,11 @@ public class CreateRisk extends BaseTest{
         driver.findElement(EditRiskOwner).click();
         Thread.sleep(2000);
         driver.findElement(SelectRiskOwner1).click();
-        Thread.sleep(500);
+        Thread.sleep(300);
         driver.findElement(SelectRiskOwner2).click();
-        Thread.sleep(500);
+        Thread.sleep(300);
         driver.findElement(SelectRiskOwner3).click();
-        Thread.sleep(500);
+        Thread.sleep(300);
         driver.findElement(SelectRiskOwner4).click();
         Thread.sleep(500);
         driver.findElement(NextButton).click();
@@ -109,16 +107,18 @@ public class CreateRisk extends BaseTest{
         Thread.sleep(2000);
         driver.findElement(NextButton).click();
         Thread.sleep(2000);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,250)", "");
         driver.findElement(AddingRiskOverseerField).click();
-        Thread.sleep(500);
+        Thread.sleep(300);
         driver.findElement(OpeningOverseerList).click();
-        Thread.sleep(500);
+        Thread.sleep(300);
         driver.findElement(SelectOverseer1).click();
-        Thread.sleep(500);
+        Thread.sleep(300);
         driver.findElement(SelectOverseer2).click();
-        Thread.sleep(500);
+        Thread.sleep(300);
         driver.findElement(SelectOverseer3).click();
-        Thread.sleep(500);
+        Thread.sleep(300);
         driver.findElement(NextButton).click();
         Thread.sleep(1000);
         driver.findElement(AddingRiskMitigationPriorityField).click();
@@ -127,8 +127,7 @@ public class CreateRisk extends BaseTest{
         //Thread.sleep(1000);
         //driver.findElement(SelectingRiskMitigationPriority).click();
         driver.findElement(AddButton).click();
-        wait.until(ExpectedConditions.elementToBeClickable(RiskModule));
-        Thread.sleep(6000);
+        wait.until(ExpectedConditions.elementToBeClickable(organization_module));
         String CurrentUrl=driver.getCurrentUrl();
         if(!CurrentUrl.contains("risk_dashboard?module=risk")){
             Assert.fail("Did not landed on correct page");
@@ -141,7 +140,7 @@ public class CreateRisk extends BaseTest{
 
     @AfterMethod
     public void clearTests() {
-        // driver.quit();
+        driver.quit();
 
     }
 }

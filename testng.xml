@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/163ku/IdeaProjects/RBAC_automation_script">
+        <classes>
+            <class name="tests.nativeLogin">
+                <methods>
+                    <include name="loginWithBlankEmailidPassword"/>
+                    <include name="loginWithCorrectDetails"/>
+                    <include name="loginWithBlankEmailidPassword_inBETA"/>
+                    <include name="loginWithCorrectDetails_inBETA"/>
+                    <include name="loginWithBlankEmailidPassword_inAPP"/>
+                    <include name="loginWithCorrectDetails_inAPP"/>
+                </methods>
+            </class>
+            <class name="tests.AdminCreateRC">
+                <methods>
+                    <include name="AdminCreateRC"/>
+                </methods>
+            </class>
+            <class name="tests.CreateNewUser">
+                <methods>
+                    <include name="CreateNewUser"/>
+                </methods>
+            </class>
+            <class name="tests.CreateRisk">
+                <methods>
+                    <include name="CreateRisk"/>
+                </methods>
+            </class>
+            <class name="tests.CreateRole">
+                <methods>
+                    <include name="CreateRole"/>
+                </methods>
+            </class>
+            <class name="tests.ExecutiveUserRoleVerify">
+                <methods>
+                    <include name="ExecutiveRoleVerification"/>
+                </methods>
+            </class>
+            <class name="tests.Importusersscript">
+                <methods>
+                    <include name="ImportUser"/>
+                </methods>
+            </class>
+
+        </classes>
+    </test>
+</suite>

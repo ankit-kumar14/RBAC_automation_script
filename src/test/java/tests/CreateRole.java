@@ -39,7 +39,7 @@ public class CreateRole extends BaseTest{
         //driver.navigate().to(organizationURL+"/manage-users");
     }
     @Test(description="Test:Testing create role functionality")
-    public void loginWithCorrectDetails() throws InterruptedException {
+    public void CreateRole() throws InterruptedException {
         WebDriverWait wait=new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(emailAddressField));
         driver.findElement(emailAddressField).clear();
@@ -68,7 +68,7 @@ public class CreateRole extends BaseTest{
 
     @AfterMethod
     public void clearTests() {
-        // driver.quit();
+        driver.quit();
 
     }
 }
