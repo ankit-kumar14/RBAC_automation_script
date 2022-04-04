@@ -30,7 +30,7 @@ public class ExecutiveUserRoleVerify extends BaseTest {
         private By CreateRcButton = By.xpath("//button[contains(text(),'+ ADD A RESPONSIBILITY CENTER')]");
 
         @BeforeMethod
-        public void setupTests() {
+        public void setupTests() throws Exception {
         super.setup();
         driver.navigate().to(baseURL +"/signin");
         }

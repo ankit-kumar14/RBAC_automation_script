@@ -26,15 +26,14 @@ public class nativeLogin extends BaseTest{
 
 
     @BeforeMethod
-    public void setupTests() {
-        //super.setup();
+    public void setupTests() throws Exception{
+        super.setup();
         //driver.navigate().to(baseURL+"/signin");
         //driver.navigate().to(organizationURL+"/manage-users");
     }
 
     @Test( priority=1 , description = "Test:Login Test With Blank Userid and passwords")
     public void loginWithBlankEmailidPassword_inDEV(){
-        super.setup();
         driver.navigate().to("https://" +dev_server+ ".v-comply.com"+"/signin");
         WebDriverWait wait=new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(emailAddressField));
@@ -183,11 +182,9 @@ public class nativeLogin extends BaseTest{
         }
     }
 
-
-
     @AfterMethod
     public void clearTests() {
-        //driver.close();
+        driver.close();
 
     }
 }

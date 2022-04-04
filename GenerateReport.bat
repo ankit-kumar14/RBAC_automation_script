@@ -1,1 +1,1 @@
-allure serve C:\Users\163ku\IdeaProjects\RBAC_automation_script\allure-results
+allure serve C:\Users\VComply\IdeaProjects\RBAC_automation_script\allure-results

@@ -53,7 +53,7 @@ public class CreateRisk extends BaseTest{
 
 
     @BeforeMethod
-    public void setupTests() {
+    public void setupTests() throws Exception{
         super.setup();
         driver.navigate().to(baseURL+"/signin");
     }
@@ -98,6 +98,10 @@ public class CreateRisk extends BaseTest{
         Thread.sleep(500);
         driver.findElement(NextButton).click();
         Thread.sleep(6000);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        driver.findElement(AddingRiskOverseerField).click();
+        Thread.sleep(2000);
+        wait.until(ExpectedConditions.elementToBeClickable(OpeningRiskCategory));
         driver.findElement(OpeningRiskCategory).click();
         Thread.sleep(5000);
         wait.until(ExpectedConditions.elementToBeClickable(SelectingOtherRiskCategory));
@@ -107,10 +111,7 @@ public class CreateRisk extends BaseTest{
         Thread.sleep(2000);
         driver.findElement(NextButton).click();
         Thread.sleep(2000);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,250)", "");
-        driver.findElement(AddingRiskOverseerField).click();
-        Thread.sleep(300);
         driver.findElement(OpeningOverseerList).click();
         Thread.sleep(300);
         driver.findElement(SelectOverseer1).click();

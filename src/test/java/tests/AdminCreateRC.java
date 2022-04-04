@@ -1,4 +1,6 @@
 package tests;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -8,21 +10,17 @@ import org.openqa.selenium.Keys;
 
 import base.BaseTest;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.SQLOutput;
 
 public class AdminCreateRC extends BaseTest{
-    private String email="charles@knol-power.nl";
-    private String password="Vcomply@1234";
-    //String name11 = "Ubner";
+
     private By emailAddressField = By.xpath("//input[@formcontrolname='email']");
     private By passwordField = By.xpath("//input[@formcontrolname='password']");
     private By loginButton = By.xpath("//button[contains(text(),'SIGN IN')]");
 
     // Script for organization module 'Creating new Responsibility Center' from 'Admin's account'
-
-    private String Rcname = "SeleniumNg"; //RC name
-    private String LocationOfRc ="Power users location"; // RC location field
-    private String search = "SeleniumNg";  // RC name to be searched
 
     private By organization_module = By.xpath("//*[@id='organizationMenu']");
     private By ResponsibilityCenter = By.xpath("//a[contains(text(), ' Responsibility Centers ')]");
@@ -44,7 +42,7 @@ public class AdminCreateRC extends BaseTest{
     private By SaveButton = By.xpath("//button[contains(text(),'SAVE')]");
 
     private By ViewRcDetails = By.xpath("(//button[@class='view-details-btn vx-fs-11 vx-fw-500 vx-tt-uppercase vx-p-0 vx-pl-2 vx-pr-2 vx-m-0 vx-d-flex vx-align-center vx-lh-5'])[1]");
-    private By ClickingThreedots = By.xpath("//button[@class='action-btn vx-fs-16 vx-d-inline-flex vx-align-center']");
+    private By ClickingThreeDots = By.xpath("//button[@class='action-btn vx-fs-16 vx-d-inline-flex vx-align-center']");
     private By DeleteRC = By.xpath("//button[contains(text(),' delete')]");
     private By DeleteYes = By.xpath("//button[contains(text(),'Yes')]");
     private By SearchBar = By.xpath("//input[@placeholder = 'Type here & press enter to search']");
@@ -53,34 +51,52 @@ public class AdminCreateRC extends BaseTest{
 
 
     @BeforeMethod
-    public void setupTests() {
+    public void setupTests() throws Exception{
         super.setup();
         driver.navigate().to(baseURL+"/signin");
-        //driver.navigate().to(organizationURL+"/manage-users");
     }
     @Test(description="Test:Testing create responsibility center using admins account")
-    public void AdminCreateRC() throws InterruptedException {
+    public void AdminCreateRC() throws Exception {
+
+        File src = new File("C:\\Users\\VComply\\IdeaProjects\\RBAC_automation_script\\TestData.xlsx");
+        FileInputStream fis = new FileInputStream(src);
+        XSSFWorkbook xsf = new XSSFWorkbook(fis);
+        XSSFSheet BaseSetup_Sheet = xsf.getSheetAt(0);
+        XSSFSheet Admin_Create_Rc_Sheet = xsf.getSheetAt(1);
+
+        //Data Fetched from BASE_SETUP Excel Sheet
+        String AdminEmailAddress = BaseSetup_Sheet.getRow(8).getCell(1).getStringCellValue();
+        String AdminPassword = BaseSetup_Sheet.getRow(9).getCell(1).getStringCellValue();
+
+        //Data Fetched from Admin_Create_RC Excel Sheet
+        String Responsibility_Center_Name = Admin_Create_Rc_Sheet.getRow(2).getCell(1).getStringCellValue();
+        String Location_Of_RC = Admin_Create_Rc_Sheet.getRow(3).getCell(1).getStringCellValue();
+
+        xsf.close();
+
+        //Test condition script starts from here
+
         WebDriverWait wait=new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(emailAddressField));
         driver.findElement(emailAddressField).clear();
-        driver.findElement(emailAddressField).sendKeys(email);
+        driver.findElement(emailAddressField).sendKeys(AdminEmailAddress);
         driver.findElement(passwordField).clear();
-        driver.findElement(passwordField).sendKeys(password);
+        driver.findElement(passwordField).sendKeys(AdminPassword);
         driver.findElement(loginButton).click();
         wait.until(ExpectedConditions.elementToBeClickable(organization_module));
         driver.findElement(organization_module).click();
-        Thread.sleep(500);
+        wait.until(ExpectedConditions.elementToBeClickable(ResponsibilityCenter));
         driver.findElement(ResponsibilityCenter).click();
-        Thread.sleep(1500);
+        wait.until(ExpectedConditions.elementToBeClickable(CreateRcButton));
         driver.findElement(CreateRcButton).click();
-        Thread.sleep(1000);
-        driver.findElement(RcNameFeild).sendKeys(Rcname);
+        wait.until(ExpectedConditions.elementToBeClickable(RcparentList));
+        driver.findElement(RcNameFeild).sendKeys(Responsibility_Center_Name);
         driver.findElement(RcparentList).click();
-        Thread.sleep(3000);
+        wait.until(ExpectedConditions.elementToBeClickable(SelectingRcParent));
         driver.findElement(SelectingRcParent).click();
         Thread.sleep(1000);
         driver.findElement(NextButton).click();
-        driver.findElement(LocationOfRcInputField).sendKeys(LocationOfRc);
+        driver.findElement(LocationOfRcInputField).sendKeys(Location_Of_RC);
         driver.findElement(SelectOwnersEditButton).click();
         Thread.sleep(4000);
         driver.findElement(Owner1).click();
@@ -93,14 +109,13 @@ public class AdminCreateRC extends BaseTest{
         Thread.sleep(500);
         driver.findElement(NextButton).click();
         driver.findElement(RcType).click();
-        Thread.sleep(500);
         driver.findElement(SelectingAllPowerUers).click();
-        Thread.sleep(1500);
+        wait.until(ExpectedConditions.elementToBeClickable(SaveButton));
         //driver.findElement(AddDescriptionField).click();
         //Thread.sleep(1000);
         //driver.findElement(AddDescriptionField).sendKeys(Description);
         driver.findElement(SaveButton).click();
-        Thread.sleep(5000);
+        wait.until(ExpectedConditions.elementToBeClickable(SearchBar));
         String CurrentUrl=driver.getCurrentUrl();
         if(!CurrentUrl.contains("manage-responsibility-centers")){
             Assert.fail("Did not landed on correct page");
@@ -111,20 +126,22 @@ public class AdminCreateRC extends BaseTest{
 
         //Delete Rc functionality
 
+        wait.until(ExpectedConditions.elementToBeClickable(organization_module));
         driver.findElement(SearchBar).click();
-        driver.findElement(SearchBar).sendKeys(search);
+        driver.findElement(SearchBar).sendKeys(Responsibility_Center_Name);
         Thread.sleep(1000);
         driver.findElement(SearchBar).sendKeys(Keys.ENTER);
-        Thread.sleep(1000);
+        wait.until(ExpectedConditions.elementToBeClickable(ViewRcDetails));
         driver.findElement(ViewRcDetails).click();
-        Thread.sleep(5000);
-        driver.findElement(ClickingThreedots).click();
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.elementToBeClickable(ClickingThreeDots));
+        driver.findElement(ClickingThreeDots).click();
+        wait.until(ExpectedConditions.elementToBeClickable(DeleteRC));
         driver.findElement(DeleteRC).click();
-        Thread.sleep(1000);
+        wait.until(ExpectedConditions.elementToBeClickable(DeleteYes));
         driver.findElement(DeleteYes).click();
-        Thread.sleep(5000);
+        wait.until(ExpectedConditions.elementToBeClickable(organization_module));
         String AfterDeleteUrl=driver.getCurrentUrl();
+        Thread.sleep(3000);
         if(!AfterDeleteUrl.contains("manage-responsibility-centers")){
             Assert.fail("Did not landed on correct page");
         }
@@ -135,6 +152,8 @@ public class AdminCreateRC extends BaseTest{
 
     @AfterMethod
     public void clearTests() {
+        WebDriverWait wait=new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.elementToBeClickable(organization_module));
         driver.quit();
     }
 }

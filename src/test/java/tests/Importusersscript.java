@@ -27,7 +27,7 @@ public class Importusersscript extends BaseTest{
 
 
     @BeforeMethod
-    public void setupTests() {
+    public void setupTests() throws Exception{
         super.setup();
         driver.navigate().to(baseURL+"/signin");
         //driver.navigate().to(organizationURL+"/manage-users");
@@ -47,9 +47,9 @@ public class Importusersscript extends BaseTest{
         driver.findElement(ImportUser).click();
         Thread.sleep(2000);
         driver.findElement(DownloadTemplate).click();
-        driver.findElement(BrowseTemplate).click();
-        WebElement chooseFile = driver.findElement(By.id("custom-input"));
-        chooseFile.sendKeys("/Users/");
+        Thread.sleep(3000);
+        WebElement upload_file = driver.findElement(BrowseTemplate);
+        upload_file.sendKeys("C:\\Users\\VComply\\Downloads\\VComply - Add Multiple Users - 2022-03-28.xls");
     }
 
 

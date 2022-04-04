@@ -15,7 +15,7 @@ public class CreateNewUser extends BaseTest{
     private String email="jamescop@knol-power.nl";
     private String password="Vcomply@1234";
     private String NewUserName = "Akash patil";
-    private String NewUserEmailaddress = "patil_akash@knol-power.nl";
+    private String NewUserEmailaddress = "patil_akash12@knol-power.nl";
     private By emailAddressField = By.xpath("//input[@formcontrolname='email']");
     //private By passwordField = By.xpath("//input[contains(text(),'Enter a password')]");
     private By passwordField = By.xpath("//input[@formcontrolname='password']");
@@ -39,7 +39,7 @@ public class CreateNewUser extends BaseTest{
 
 
     @BeforeMethod
-    public void setupTests() {
+    public void setupTests() throws Exception{
         super.setup();
         driver.navigate().to(baseURL+"/signin");
         //driver.navigate().to(organizationURL+"/manage-users");
