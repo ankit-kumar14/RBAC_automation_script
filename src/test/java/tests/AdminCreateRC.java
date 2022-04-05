@@ -37,8 +37,8 @@ public class AdminCreateRC extends BaseTest{
     private By Owner4 = By.xpath("//div[contains(text(),'William')]");
     private By RcType = By.xpath("//input[@readonly and @placeholder='Select']"); //SPECIFY WHO CAN TAG RESPONSIBILITIES TO THIS RESPONSIBILITY CENTER
     private By SelectingAllPowerUers = By.xpath("(//input[@class=\"pointer-none\"])[1]"); //Selecting all power users type
-    //private String Description ="A group, in mathematics,with Évariste Galois in the 1830s.";
-    //private By AddDescriptionField = By.xpath("//div[@placeholder='Add description' and @id='mPcY8BIzOVIGNI7CJ83bS']"); //DESCRIPTION FOR THIS RESPONSIBILITY CENTER
+    // private String Description ="A group, in mathematics,with Évariste Galois in the 1830s.";
+    // private By AddDescriptionField = By.xpath("//div[@placeholder='Add description' and @id='mPcY8BIzOVIGNI7CJ83bS']"); //DESCRIPTION FOR THIS RESPONSIBILITY CENTER
     private By SaveButton = By.xpath("//button[contains(text(),'SAVE')]");
 
     private By ViewRcDetails = By.xpath("(//button[@class='view-details-btn vx-fs-11 vx-fw-500 vx-tt-uppercase vx-p-0 vx-pl-2 vx-pr-2 vx-m-0 vx-d-flex vx-align-center vx-lh-5'])[1]");
@@ -53,7 +53,6 @@ public class AdminCreateRC extends BaseTest{
     @BeforeMethod
     public void setupTests() throws Exception{
         super.setup();
-        driver.navigate().to(baseURL+"/signin");
     }
     @Test(description="Test:Testing create responsibility center using admins account")
     public void AdminCreateRC() throws Exception {
@@ -64,10 +63,6 @@ public class AdminCreateRC extends BaseTest{
         XSSFSheet BaseSetup_Sheet = xsf.getSheetAt(0);
         XSSFSheet Admin_Create_Rc_Sheet = xsf.getSheetAt(1);
 
-        //Data Fetched from BASE_SETUP Excel Sheet
-        String AdminEmailAddress = BaseSetup_Sheet.getRow(8).getCell(1).getStringCellValue();
-        String AdminPassword = BaseSetup_Sheet.getRow(9).getCell(1).getStringCellValue();
-
         //Data Fetched from Admin_Create_RC Excel Sheet
         String Responsibility_Center_Name = Admin_Create_Rc_Sheet.getRow(2).getCell(1).getStringCellValue();
         String Location_Of_RC = Admin_Create_Rc_Sheet.getRow(3).getCell(1).getStringCellValue();
@@ -77,12 +72,6 @@ public class AdminCreateRC extends BaseTest{
         //Test condition script starts from here
 
         WebDriverWait wait=new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.elementToBeClickable(emailAddressField));
-        driver.findElement(emailAddressField).clear();
-        driver.findElement(emailAddressField).sendKeys(AdminEmailAddress);
-        driver.findElement(passwordField).clear();
-        driver.findElement(passwordField).sendKeys(AdminPassword);
-        driver.findElement(loginButton).click();
         wait.until(ExpectedConditions.elementToBeClickable(organization_module));
         driver.findElement(organization_module).click();
         wait.until(ExpectedConditions.elementToBeClickable(ResponsibilityCenter));
